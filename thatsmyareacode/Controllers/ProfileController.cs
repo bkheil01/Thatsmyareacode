@@ -10,57 +10,57 @@ using thatsmyareacode.Models;
 
 namespace thatsmyareacode.Controllers
 {
-    public class ProfilesController : Controller
+    public class ProfileController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Profiles
+        // GET: Profile
         public ActionResult Index()
         {
             return View(db.Profiles.ToList());
         }
 
-        // GET: Profiles/Details/5
+        // GET: Profile/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profiles profiles = db.Profiles.Find(id);
-            if (profiles == null)
+            Profile profile = db.Profiles.Find(id);
+            if (profile == null)
             {
                 return HttpNotFound();
             }
-            return View(profiles);
+            return View(profile);
         }
 
-        // GET: Profiles/Create
+        // GET: Profile/Create
         [Authorize(Roles = "canEdit")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Profiles/Create
+        // POST: Profile/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canEdit")]
-        public ActionResult Create([Bind(Include = "ProfileId,Name,Address,City,State,Zip,AreaCode,Email")] Profiles profiles)
+        public ActionResult Create([Bind(Include = "ProfileId,Name,Address,City,State,Zip,AreaCode,Email")] Profile profile)
         {
             if (ModelState.IsValid)
             {
-                db.Profiles.Add(profiles);
+                db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(profiles);
+            return View(profile);
         }
 
-        // GET: Profiles/Edit/5
+        // GET: Profile/Edit/5
         [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
@@ -68,32 +68,32 @@ namespace thatsmyareacode.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profiles profiles = db.Profiles.Find(id);
-            if (profiles == null)
+            Profile profile = db.Profiles.Find(id);
+            if (profile == null)
             {
                 return HttpNotFound();
             }
-            return View(profiles);
+            return View(profile);
         }
 
-        // POST: Profiles/Edit/5
+        // POST: Profile/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canEdit")]
-        public ActionResult Edit([Bind(Include = "ProfileId,Name,Address,City,State,Zip,AreaCode,Email")] Profiles profiles)
+        public ActionResult Edit([Bind(Include = "ProfileId,Name,Address,City,State,Zip,AreaCode,Email")] Profile profile)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(profiles).State = EntityState.Modified;
+                db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(profiles);
+            return View(profile);
         }
 
-        // GET: Profiles/Delete/5
+        // GET: Profile/Delete/5
         [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
@@ -101,22 +101,22 @@ namespace thatsmyareacode.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profiles profiles = db.Profiles.Find(id);
-            if (profiles == null)
+            Profile profile = db.Profiles.Find(id);
+            if (profile == null)
             {
                 return HttpNotFound();
             }
-            return View(profiles);
+            return View(profile);
         }
 
-        // POST: Profiles/Delete/5
+        // POST: Profile/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canEdit")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Profiles profiles = db.Profiles.Find(id);
-            db.Profiles.Remove(profiles);
+            Profile profile = db.Profiles.Find(id);
+            db.Profiles.Remove(profile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
