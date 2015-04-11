@@ -3,9 +3,8 @@ using System.Globalization;
 
 namespace thatsmyareacode.Models
 {
-    public class Profiles
+    public class Profile
     {
-        [Key]
         public int ProfileId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -14,6 +13,6 @@ namespace thatsmyareacode.Models
         public string Zip { get; set; }
         public string AreaCode { get; set; }
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }       
+        public string Email { get; set; }
     }
 }
