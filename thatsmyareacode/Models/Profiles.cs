@@ -1,5 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace thatsmyareacode.Models
 {
@@ -14,5 +18,7 @@ namespace thatsmyareacode.Models
         public string AreaCode { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public Zinger FavoriteZinger { get; set; }
+        public List<Zinger> ZingerList { get; set; }
     }
 }
